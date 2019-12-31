@@ -1,16 +1,14 @@
-﻿namespace APIGateway
-{
-    using System.IO;
-    using Microsoft.AspNetCore;
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.AspNetCore.Builder;    
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.Logging;
-    using Ocelot.DependencyInjection;
-    using Ocelot.Middleware;
+﻿using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Ocelot.DependencyInjection;
+using Ocelot.Middleware;
 
+namespace APIGateway
+{
     public class Program
     {
         public static void Main(string[] args)
@@ -21,7 +19,7 @@
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                    //.UseStartup<Startup>()
-                   .UseUrls("http://*:9000")
+                   //.UseUrls("http://*:9000")
                    .ConfigureAppConfiguration((hostingContext, config) =>
                {
                    config
@@ -32,7 +30,7 @@
                .ConfigureServices(s =>
                {
                    s.AddOcelot();
-                   s.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+                   s.AddMvc();
                })
                 .Configure(a =>
                 {                    
